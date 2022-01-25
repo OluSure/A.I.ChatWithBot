@@ -1,2 +1,2 @@
-# A.I.ChatWithBot
-This is a new project which I am currently working on. More details about this will be in later on February 6th. Thanks.
+# About
+This is the project in which I and certain others are currently working personally to learn more about using R for analysis 
