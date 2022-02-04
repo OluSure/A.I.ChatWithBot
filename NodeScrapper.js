@@ -6,7 +6,7 @@ const app = express()
 
 const articles = [
     {
-        name: 'cityam',
+        name: 'pure',
         address: 'https://abdn.pure.elsevier.com/en/publications',
         base: ''
     },
