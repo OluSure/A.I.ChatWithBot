@@ -1,0 +1,126 @@
+﻿
+if comment("NOTE: I used IPUMS Ghana 2010 dataset to get Crude Birth Rate (CBR), General Fertility Rate (GFR), Total Fertility Rate (TFR), Gross Reproductive Rate (GRR) and Age-Specific Fertility Rate (ASFR).
+
+Download the data with this URL https://live.ipumsi.datadownload.ipums.org/web/extracts/ipumsi/1748632/ipumsi_00013.csv.gz")
+
+
+# These are packages I made use of
+install.packages("ipumsr")
+install.packages(“e1071”)
+install.packages(“WriteXLS”)
+
+# On some version "e1071" is a follow come package
+update.packages(“e1071”)
+update.packages(“ggplot2”)
+
+# to call the packages
+library(“WriteXLS”)
+library("ipumsr")
+library(e1071)
+
+# for help while using the packages 
+help(package ="ipumsr")
+help(package ="e1071")
+
+# to read ipums ddi
+ddi <- read_ipums_ddi("https://live.ipumsi.datadownload.ipums.org/web/extracts/ipumsi/1748632/ipumsi_00013.xml")
+rdata <- read_ipums_micro(ddi)
+
+# to show ipums data in CSV format 
+ipum <- class(ipum.data)
+write.csv(ipum.data, file = "file:///storage/3739-3333/Assignment/402/Tobi/ipumsi_00013.csv")
+head(csv.data)
+
+# to show ipums data in 
+view <- data(my.data)
+class(my.data)
+writexls("my.data", excelfilename="file:///storage/3739-3333/Assignment/402/Tobi_big_data_sheet.xlsx")
+
+# Created a simple data, loading ipums and my.data make my phone slow and hangs.
+s.data <- read.table(header = TRUE, text = "
+age age_group chborn sex
+1 2 3 0
+2 5 6 9
+3 7 8 0
+4 6 5 9
+5 3 2 0
+")
+write.table(s.data, file = "file:///storage/3739-3333/Assignment/402/assignment.txt" , sep = " ")
+
+# Save the workings also in R sheet
+rdata <- save(s.data, file="file:///storage/3739-3333/Assignment/402/assignment.rdata")
+load("file:///storage/3739-3333/Assignment/402/assignment.rdata")
+
+# to view the summary of my data 
+sumarize <- summary(my.data)
+
+# to table it out, there I have variable for sex, age, age2 which is age group and chborn which is CEB
+table.my.data <- table(my.data)
+
+# Simple chart, I used to view each variable
+age.chart <- hist(my.data$age, labels = Age, main="Chart for Age")
+
+#call "ipum" to see how the response have been coded
+#recode value "99" and "98" of chborn to "0"
+if my.data$chborn=="99" & my.data$chborn=="98"
+{repl("0\\.")}
+
+# Count pop.
+total.pop <- nrow(my.data$sex)
+
+# Count reproductive female response 
+ no.female <- nrow(my.data$sex[my.data$sex=="2" & my.data&age=="15:49"])
+
+#Count all female
+  no.female.all <- nrow(my.data$sex[my.data$sex=="2"])
+ 
+ # No. of children born
+ no.chb <- sum(my.data$chborn[my.data$sex=="2"])
+ 
+ # Age range: no. of births ÷ no. of females in age group
+
+ a15.19 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="15:19"]) %% nrow(my.data$age[my.data$sex=="2" && my.data$age=="15:19"])
+ 
+ a20.24 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="20:24"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="20:24"])
+ 
+ a25.29 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="25:29"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="25:29"])
+ 
+ a30.34 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="30:34"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="30:34"])
+ 
+ a35.39 <-  sum(my.data$chborn[my.data$sex=="2" & my.data$age=="35:39"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="35:39"])
+ 
+ a40.44 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="40:44"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="40:44"])
+ 
+ a45.49 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="45:49"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="45:49"])
+
+# you can use a function to do it easily
+Age_group <- function(p1, p2) { 
+a_p1.p2 <- sum(my.data$chborn[my.data$sex=="2" & my.data$age=="p1:p2"]) %% nrow(my.data$age[my.data$sex=="2" & my.data$age=="p1:p2"])
+}
+
+# CBR
+cbr <- ((no.chb%%total.pop)%*%1000, nsmall = 3)
+
+#GFR
+gfr <- ((no.chb%%no.female.all)%*%1000, nsmall = 3)
+
+#ASFR put it on array
+asfr <- sum(a15.19, a20.24, a25.29, a30.34, a35.39, a40.44, a45.49)
+
+#TFR 
+tfr <- ((asfr)%*%5, nsmall = 3)
+tfr2 <- ((cbr)%*%4.5%*%30, nsmall = 3)
+
+# no. of female below 15 years assumed to be the no. of female children 
+no.fbelow <- nrow(my.data$sex[my.data$sex=="2" & my.data&age=="0:14"])
+
+#GRR
+grr <- ((no.fbelow%%no.female)%%tfr, nsmall = 3)
+
+#Display fertility measured 
+Sol <-
+data.frame(
+Fertility = c("Total_pop", "Total_no_female","Total_no_female_15.49","Total_children","CBR","GFR","TFR","GRR"),
+Measurements = c(total.pop, no.female.all, no.female, no.fbelow, cbr, gfr, tfr, grr))
+
+ 
