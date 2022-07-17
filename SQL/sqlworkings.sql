@@ -41,19 +41,19 @@ select count sex from ipumsi_00013 where age between 0 and 14 as Total_female_ch
 
 # Age range: no. of births ÷ no. of females in age group
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 15 and 19 / select count age between 15 and 19 from ipumsi_00013 where sex = 2 ) as Asfr_15_19
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 15 and 19) / (select count age between 15 and 19 from ipumsi_00013 where sex = 2 ) as Asfr_15_19
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 20 and 24 / select count age between 20 and 24 from ipumsi_00013 where sex = 2) as Asfr_20_24
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 20 and 24) / (select count age between 20 and 24 from ipumsi_00013 where sex = 2) as Asfr_20_24
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 25 and 29 / select count age between 25 and 29 from ipumsi_00013 where sex = 2) as Asfr_25_29
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 25 and 29) / (select count age between 25 and 29 from ipumsi_00013 where sex = 2) as Asfr_25_29
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 30 and 34 / select count age between 30 and 34 from ipumsi_00013 where sex = 2) as Asfr_30_34
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 30 and 34) / (select count age between 30 and 34 from ipumsi_00013 where sex = 2) as Asfr_30_34
 
-(select sum chborb from ipumsi_00013 as Asfr_35_39 where sex = 2 and age between 35 and 39 / select count age between 35 and 39 from ipumsi_00013 where sex = 2) as Asfr_35_39
+select (select sum chborb from ipumsi_00013 as Asfr_35_39 where sex = 2 and age between 35 and 39) / (select count age between 35 and 39 from ipumsi_00013 where sex = 2) as Asfr_35_39
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 40 and 44 / select count age between 40 and 44 from ipumsi_00013 where sex = 2) as Asfr_40_44
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 40 and 44) / (select count age between 40 and 44 from ipumsi_00013 where sex = 2) as Asfr_40_44
 
-(select sum chborb from ipumsi_00013 where sex = 2 and age between 45 and 49 / select count age between 45 and 49 from ipumsi_00013 where sex = 2) as Asfr_45_49
+select (select sum chborb from ipumsi_00013 where sex = 2 and age between 45 and 49) / (select count age between 45 and 49 from ipumsi_00013 where sex = 2) as Asfr_45_49
   
 Select Asfr_15_19, Asfr_20_24, Asfr_24_30, Asfr_31_34, Asfr_35_39, Asfr_40_44, Asfr_45_49 as asfr_15_49
 
@@ -70,9 +70,9 @@ Select Asfr_15_19, Asfr_20_24, Asfr_24_30, Asfr_31_34, Asfr_35_39, Asfr_40_44, A
 select sum Asfr_45_49, Asfr_40_44, Asfr_35_39, Asfr_30_34, Asfr_25_29, Asfr_20_24, Asfr_15_19 from ipumsi_00013 as Asfr
 
 -- TFR
-((select Asfr from ipumsi_00013) * 5) as TFR
+select (select Asfr from ipumsi_00013) * 5 as TFR
 
-(select Total_female_children from ipumsi_00013 / select Total_female_15_49 from ipumsi_00013) * 1000 as TFR2
+select (select Total_female_children from ipumsi_00013) / (select Total_female_15_49 from ipumsi_00013) * 1000 as TFR2
 
 -- Display the fertility measured
 select total_pop total_female total_female_15_49 total_children cbr grr asfr tfr grr from ipumsi_00013
