@@ -1,11 +1,10 @@
-<script language="javascript" type="text/javascript">
 
  if comment("NOTE: Using IPUMS Ghana 2010 dataset to get Crude Birth Rate (CBR), General Fertility Rate (GFR), Total Fertility Rate (TFR), Gross Reproductive Rate (GRR) and Age-Specific Fertility Rate (ASFR).
 
 Download the data with this URL https://live.ipumsi.datadownload.ipums.org/web/extracts/ipumsi/1748632/ipumsi_00013.csv.gz")
 
- require('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js')
- require('https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js')
+ require("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js)
+ require("https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js)
 
 //use chart to see how the response have been coded
 // Get data using D3
@@ -97,8 +96,7 @@ const grr = ((no_fbelow % no.female) % tfr).toPrecision(4);
 
 //Display the fertility measured 
 
-document.write('Total Pop. = " + total_pop + "<br/>Total No. Of Female =" + no_female_all + "<br/>Total No. Of Reproductive Female =" + no_female + "<br/>No. Of Children =" + no_fbelow + "<br/>CBR =" + cbr + "<br/>GFR =" + gfr + "<br/>TFR =" + tfr + "<br/>GRR =" + grr +"<br/><div style="background:green;color:red;border:solid red 2px;>Chart of CEB vs. Sex</div><canvas id="chart"></canvas>');
+document.write("Total Pop. = " + total_pop + "<br/>Total No. Of Female =" + no_female_all + "<br/>Total No. Of Reproductive Female =" + no_female + "<br/>No. Of Children =" + no_fbelow + "<br/>CBR =" + cbr + "<br/>GFR =" + gfr + "<br/>TFR =" + tfr + "<br/>GRR =" + grr +"<br/><div style="background:green;color:red;border:solid red 2px;>Chart of CEB vs. Sex</div><canvas id="chart"></canvas>");
 
 }
 
-</script>
