@@ -1,8 +1,8 @@
 # The Project
-I and certain others are currently working individually to learn more about using R, STATA, SQL and MS Excel for analysis.
+Using R, STATA, SQL and MS Excel for analysis.
 
 ```diff
-+ In Each Stage are specific unique tasks given.
++ In Each Stage are specific unique tasks.
 ```
 # Stage One
 Using IPUMS DATASET of GHANA 2015 for Fertility Measurement.
