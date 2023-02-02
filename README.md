@@ -10,3 +10,9 @@ Using IPUMS DATASET of GHANA 2015 for Fertility Measurement.
 
 # Stage Two
 Using NDHS 2018 DATASET For Univariate, Bivariate, and Multivariate Analysis of women autonomy and contraceptive use in northern Nigeria.
+
+
+<h3>Author<br>
+Adeoye A. Oluwatobi.<br>
+<i>Graduate of Federal University, Oye Ekiti. Department of Demography and Social Statistics. <a href="https://wa.me/+2349065428322">Whatsapp Me</a> or <a href="mailto:me.tobi.adeoye@gmail.com">Mail me</a> for any further questioning.
+</i>
