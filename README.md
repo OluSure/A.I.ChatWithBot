@@ -9,7 +9,8 @@ Using IPUMS DATASET of GHANA 2015 for Fertility Measurement.
 <img src="https://github.com/OluSure/TeamTask/blob/cd036f63d0a3790c5d304e47d5a3bb907c11b973/MsExcel/ms-excel-ipums.jpg" height="50%" width="50%" alt="Fertility Measurement Ghana 2010 IPUMS Dataset">
 
 # Stage Two
-Using NDHS 2018 DATASET For Univariate, Bivariate, and Multivariate Analysis of women autonomy and contraceptive use in northern Nigeria.
+Using NDHS 2018 DATASET For Univariate, Bivariate, and Multivariate Analysis of women autonomy and contraceptive use in northern Nigeria.<br>
+<img src="https://github.com/OluSure/Personal-Task/blob/main/Women's%20autonomy%20and%20contraceptive%20use.png" height="50%" width="50%" alt="Fertility Measurement Ghana 2010 IPUMS Dataset">
 
 
 <h3>Author<br>
